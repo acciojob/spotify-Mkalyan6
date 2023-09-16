@@ -112,7 +112,7 @@ public class SpotifyRepository {
 
 
            }else{
-               throw new CustomException("Album does not exist");
+               throw new Exception("Album does not exist");
            }
            return NewSong;
     }
@@ -145,7 +145,7 @@ public class SpotifyRepository {
                 break;
             }
         }
-            if(Presentuser==null){throw new CustomException("User does not exist");}
+            if(Presentuser==null){throw new Exception("User does not exist");}
                 //Add the playlist to list of playlists
 
                 // User is present in database list
@@ -219,7 +219,7 @@ public class SpotifyRepository {
         }
 
         // if user not found return with exception
-        if(Presentuser==null){throw new CustomException("User does not exist");}
+        if(Presentuser==null){throw new Exception("User does not exist");}
 //            user is present in database
             // Add the songs to the playlist
             List<Song> SongsListForPresentPlayList;
@@ -271,7 +271,7 @@ public class SpotifyRepository {
                break;
             }
         }
-        if(PresentUser==null)throw new CustomException("User does not exist");
+        if(PresentUser==null)throw new Exception("User does not exist");
 
         Playlist PresentPlaylist=null;
         // check for playlist is there ornot
@@ -281,7 +281,7 @@ public class SpotifyRepository {
                 break;
             }
         }
-        if(PresentPlaylist==null)throw new CustomException("Playlist does not exist");
+        if(PresentPlaylist==null)throw new Exception("Playlist does not exist");
 
         // Check if user itself created the presentplaylist,, if it is,then listener,and user already while creating
         if(creatorPlaylistMap.containsKey(PresentUser)&&creatorPlaylistMap.get(PresentUser).equals(PresentPlaylist)){
@@ -314,7 +314,7 @@ public class SpotifyRepository {
                 break;
             }
         }
-        if(PresentUser==null)throw new CustomException("User does not exist");
+        if(PresentUser==null)throw new Exception("User does not exist");
 
         // Now check for the song present in songlist, if not throw exception
         Song PresentSong=null;
@@ -324,7 +324,7 @@ public class SpotifyRepository {
                 break;
             }
         }
-        if(PresentSong==null)throw new CustomException("Song does not exist");
+        if(PresentSong==null)throw new Exception("Song does not exist");
 
         List<User>UsersLikedPresentSong;
         UsersLikedPresentSong = songLikeMap.getOrDefault(PresentSong,new ArrayList<>());
