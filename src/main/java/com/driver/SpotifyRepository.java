@@ -94,6 +94,7 @@ public class SpotifyRepository {
     public Song createSong(String title, String albumName, int length) throws Exception{
         // First check album is present or not, if it then add the song to the album.
         Song NewSong=new Song(title,length);
+        songs.add(NewSong);
 
         Album PresentAlbum=null;
         for(Album alb:albums){
