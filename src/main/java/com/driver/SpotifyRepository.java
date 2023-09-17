@@ -288,21 +288,22 @@ public class SpotifyRepository {
         // Check if user itself created the presentplaylist,, if it is,then listener,and user already while creating
         if(creatorPlaylistMap.containsKey(PresentUser)&&creatorPlaylistMap.get(PresentUser).equals(PresentPlaylist)){
             // This is already added while creating the playlist by this user
+            return PresentPlaylist;
         }
         else{
             // Present user, will be the user for this playlist
             List<Playlist>userPlaylist;
             userPlaylist = userPlaylistMap.getOrDefault(PresentUser,new ArrayList<>());
-            if(!userPlaylist.contains(PresentPlaylist)){
+//            if(!userPlaylist.contains(PresentPlaylist)){
                 userPlaylist.add(PresentPlaylist);
                 userPlaylistMap.put(PresentUser,userPlaylist);
-            }
+//            }
             List<User>userListForPresentPlaylist;
             userListForPresentPlaylist=playlistListenerMap.getOrDefault(PresentPlaylist,new ArrayList<>());
-            if(userListForPresentPlaylist.contains(PresentUser)){
+//            if(userListForPresentPlaylist.contains(PresentUser)){
                 userListForPresentPlaylist.add(PresentUser);
                 playlistListenerMap.put(PresentPlaylist,userListForPresentPlaylist);
-            }
+//            }
         }
         return PresentPlaylist;
     }
@@ -330,9 +331,12 @@ public class SpotifyRepository {
 
         List<User>UsersLikedPresentSong;
         UsersLikedPresentSong = songLikeMap.getOrDefault(PresentSong,new ArrayList<>());
-        if(!UsersLikedPresentSong.contains(PresentUser)){
+        if(UsersLikedPresentSong.size()>0&&UsersLikedPresentSong.contains(PresentUser)) {
+           return PresentSong;
+        }
             UsersLikedPresentSong.add(PresentUser);
             songLikeMap.put(PresentSong,UsersLikedPresentSong);
+            PresentSong.setLikes(PresentSong.getLikes()+1);
 
             //Now like the artist who composed the song
             // Go the every album and search for this song, and find the album
@@ -358,7 +362,7 @@ public class SpotifyRepository {
             int likes=ComposerOfPresentSong.getLikes()+1;
             ComposerOfPresentSong.setLikes(likes);
 
-        }
+
 
 //        public HashMap<Artist, List<Album>> artistAlbumMap;
 //        public HashMap<Album, List<Song>> albumSongMap;
