@@ -101,6 +101,7 @@ public class SpotifyRepository {
                 PresentAlbum=alb;
                 break;
             }
+            // ok
         }
            if(PresentAlbum!=null){
                // Means contains album, so add the song too the album list
